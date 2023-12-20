@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/my-app/static/js/main.cdc110f0.js",
-    "index.html": "/my-app/index.html",
-    "main.cdc110f0.js.map": "/my-app/static/js/main.cdc110f0.js.map"
+    "main.js": "/monopoly/static/js/main.cdc110f0.js",
+    "index.html": "/monopoly/index.html",
+    "main.cdc110f0.js.map": "/monopoly/static/js/main.cdc110f0.js.map"
   },
   "entrypoints": [
     "static/js/main.cdc110f0.js"
