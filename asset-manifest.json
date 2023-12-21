@@ -1,10 +1,15 @@
 {
   "files": {
-    "main.js": "/Taisiu-CS300Project/static/js/main.cc3187d1.js",
+    "main.css": "/Taisiu-CS300Project/static/css/main.dc4d6ff2.css",
+    "main.js": "/Taisiu-CS300Project/static/js/main.8bded14c.js",
+    "static/js/787.81462799.chunk.js": "/Taisiu-CS300Project/static/js/787.81462799.chunk.js",
     "index.html": "/Taisiu-CS300Project/index.html",
-    "main.cc3187d1.js.map": "/Taisiu-CS300Project/static/js/main.cc3187d1.js.map"
+    "main.dc4d6ff2.css.map": "/Taisiu-CS300Project/static/css/main.dc4d6ff2.css.map",
+    "main.8bded14c.js.map": "/Taisiu-CS300Project/static/js/main.8bded14c.js.map",
+    "787.81462799.chunk.js.map": "/Taisiu-CS300Project/static/js/787.81462799.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.cc3187d1.js"
+    "static/css/main.dc4d6ff2.css",
+    "static/js/main.8bded14c.js"
   ]
 }
