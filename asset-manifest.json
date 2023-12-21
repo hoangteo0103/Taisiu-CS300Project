@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/monopoly/static/js/main.4faba435.js",
-    "index.html": "/monopoly/index.html",
-    "main.4faba435.js.map": "/monopoly/static/js/main.4faba435.js.map"
+    "main.js": "/Taisiu-CS300Project/static/js/main.67d17e37.js",
+    "index.html": "/Taisiu-CS300Project/index.html",
+    "main.67d17e37.js.map": "/Taisiu-CS300Project/static/js/main.67d17e37.js.map"
   },
   "entrypoints": [
-    "static/js/main.4faba435.js"
+    "static/js/main.67d17e37.js"
   ]
 }
