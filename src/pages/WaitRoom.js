@@ -91,7 +91,7 @@ const WaitRoom = ({ setAuth }) => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/login";
+    const from = location.state?.from?.pathname || "/monopoly";
     const backToHome = location.state?.from?.pathname ||"/";
     const [playButtonHover, setPlayButtonHover] = useState(false);
 
