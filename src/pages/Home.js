@@ -6,6 +6,7 @@ import Logo from "../components/Logo";
 import CircleButtonWithImage from "../components/homepage_components/circle_button";
 import RectangleComponent from "../components/homepage_components/ranking";
 import HomeButton from "../components/homepage_components/button";
+import ShopBox from "../components/homepage_components/shop_box";
 import React, { useState } from 'react';
 import SoundComponent from "../components/homepage_components/sound";
 //////////////////////////////////////
@@ -25,12 +26,23 @@ const Home = ({ setAuth }) => {
   const [isCreateRoomBox, setCreateRoomBox] = useState(false);
   const [closeButtonHover, setCloseButtonHover] = useState(false);
   const [joinButtonHover, setJoinButtonHover] = useState(false);
+  const [isCreateShopBox, setCreateShopBox] = useState(false);
 
   const navigateToWaitingRoom = () => {
     console.log('Navigate to waiting room');
     setAuth(false);
     navigate(from, { replace: true });
   }
+
+  
+  const showCreateShopBox = () => {
+    setCreateShopBox(true);
+  };
+
+  const hideCreateShopBox = () => {
+    console.log("hide shop box");
+    setCreateShopBox(false);
+  };
 
   const showCreateRoomBox = () => {
     setCreateRoomBox(true);
@@ -156,13 +168,11 @@ const Home = ({ setAuth }) => {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         backgroundColor: '#f0f0f0',
-        // padding: '5px',
         textAlign: 'center',
         height: '70%',
         width: '70%',
-        borderRadius: '10px',  // Đặt góc bo cong
+        borderRadius: '10px',  
         border: '2px solid #000',  
-        // Đặt độ dày và màu đen cho border
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',
@@ -183,12 +193,11 @@ const Home = ({ setAuth }) => {
         border: '2px solid #000', 
     };
     
-
     const titleStyle = {
       fontSize: '30px',
       fontWeight: 'bold',
       color: '#000000',
-      margin: '-5px 0px',
+      margin: '-10px 0px',
     };
 
     const rowStyle = {
@@ -266,9 +275,7 @@ const Home = ({ setAuth }) => {
             <div style={emptyBoxStyle}></div>
             <HomeButton onClick={showCreateRoomBox} label='Choose Table' buttonBackground='#72B174' />
             <div style={emptyBoxStyle}></div>
-            <HomeButton onClick={homeButtonClick} label='Shop' buttonBackground='#B969C6' />
-    
-            <button onClick={showCreateRoomBox}>Show Box</button>
+            <HomeButton onClick={showCreateShopBox} label='Shop' buttonBackground='#B969C6' />
 
             {isCreateRoomBox && (
               <div style={boxStyle}>
@@ -283,6 +290,10 @@ const Home = ({ setAuth }) => {
       onMouseLeave={() => setCloseButtonHover(false)}>Close Box</button>
                 </div>
               </div>
+            )}
+            
+            {isCreateShopBox && (
+              <ShopBox hideCreateShopBox={hideCreateShopBox}/>
             )}
           </div>
         </div>
