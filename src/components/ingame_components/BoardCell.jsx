@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const RectCell = ({ content, width, height, top, bottom, left, right, rotate, origin }) => {
     const rectStyle = {
@@ -334,7 +334,27 @@ const boardData = [
 ]
 
 const BoardGame = () => {
-    const screenHeight = Math.min(window.innerWidth, window.innerHeight);
+    const [boardSize, setBoardSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+
+    useEffect(() => {
+        const handleResize = () => {
+          setBoardSize({
+            width: window.innerWidth,
+            height: window.innerHeight,
+          });
+        };
+    
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const screenHeight = Math.min(boardSize.width, boardSize.height);
 
     const cellWidth = Math.floor(screenHeight / 13);
     const cellHeight = cellWidth * 2;
