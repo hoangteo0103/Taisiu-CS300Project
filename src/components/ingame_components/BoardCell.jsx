@@ -39,15 +39,15 @@ const RectCell = ({ content, width, height, top, bottom, left, right, rotate, or
     <div style={rectStyle}>
         {content.color && <div style={coloredDivStyle}></div>}
         <div style={contentBoxStyle}>
-            <p style={{ fontSize: '30%', fontWeight: 'bold', textAlign: 'center' }}>{content.name}</p>
+            <p style={{ fontSize: '30%', fontWeight: '700', textAlign: 'center' }}>{content.name}</p>
             {content.image && <img style={{ width: '60%', transform: 'rotate(270deg)' }} src={process.env.PUBLIC_URL + content.image}></img>}
-            <p style={{ fontSize: '30%', fontWeight: 'bold', textAlign: 'center' }}>PRICE {content.price}</p>
+            <p style={{ fontSize: '30%', fontWeight: '700', textAlign: 'center' }}>PRICE {content.price}</p>
         </div>
     </div>
     );
 };
 
-const SquareCell = ({ width, top, bottom, left, right, rotate, origin }) => {
+const SquareCell = ({ image, width, top, bottom, left, right, rotate, origin }) => {
     const rectStyle = {
         width: `${width}px`,
         height: `${width}px`,
@@ -61,7 +61,9 @@ const SquareCell = ({ width, top, bottom, left, right, rotate, origin }) => {
         transformOrigin: origin,
     };
   
-    return <div style={rectStyle}></div>;
+    return <div style={rectStyle}>
+        {image && <img style={{ width: '100%' }} src={process.env.PUBLIC_URL + image}></img>}
+    </div>;
 };
 
 const boardData = [
@@ -359,13 +361,13 @@ const BoardGame = () => {
         <RectCell content={boardData[index + 31]} width={cellWidth} height={cellHeight} bottom={boardBottomCoord} right={boardRightCoord + (index + 2) * cellWidth} />
     ));
 
-    const boardGame = [<div><SquareCell width={cellHeight} bottom={boardBottomCoord} left={boardLeftCoord} /></div>, 
+    const boardGame = [<div><SquareCell image={"/assets/ingamepage/corner1.png"} width={cellHeight} bottom={boardBottomCoord} left={boardLeftCoord} /></div>, 
                         ...rectCellsLeft,
-                        <div><SquareCell width={cellHeight} top={boardTopCoord} left={boardLeftCoord} /></div>,
+                        <div><SquareCell image={"/assets/ingamepage/corner2.png"} width={cellHeight} top={boardTopCoord} left={boardLeftCoord} /></div>,
                         ...rectCellsTop,
-                        <div><SquareCell width={cellHeight} top={boardTopCoord} right={boardRightCoord} /></div>,
+                        <div><SquareCell image={"/assets/ingamepage/corner3.png"} width={cellHeight} top={boardTopCoord} right={boardRightCoord} /></div>,
                         ...rectCellsRight,
-                        <div><SquareCell width={cellHeight} bottom={boardBottomCoord} right={boardRightCoord} /></div>,
+                        <div><SquareCell image={"/assets/ingamepage/corner4.png"} width={cellHeight} bottom={boardBottomCoord} right={boardRightCoord} /></div>,
                         ...rectCellsBottom
                     ];
 
