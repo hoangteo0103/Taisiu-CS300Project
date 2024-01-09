@@ -1,10 +1,12 @@
 import { Button, Typography, Container, Box, Avatar } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { deepOrange, deepPurple } from '@mui/material/colors';
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import CircleButtonWithImage from "../components/homepage_components/circle_button";
 import RectangleComponent from "../components/homepage_components/ranking";
 import HomeButton from "../components/homepage_components/button";
+import ShopBox from "../components/homepage_components/shop_box";
 import React, { useState } from 'react';
 import SoundComponent from "../components/homepage_components/sound";
 //////////////////////////////////////
@@ -16,7 +18,31 @@ const Home = ({ setAuth }) => {
   const goldPath = '/assets/homepage/gold.png'
   const monopolyPath = '/assets/homepage/monopoly.png'
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/waitroom";
+
+
   const [isCreateRoomBox, setCreateRoomBox] = useState(false);
+  const [closeButtonHover, setCloseButtonHover] = useState(false);
+  const [joinButtonHover, setJoinButtonHover] = useState(false);
+  const [isCreateShopBox, setCreateShopBox] = useState(false);
+
+  const navigateToWaitingRoom = () => {
+    console.log('Navigate to waiting room');
+    setAuth(false);
+    navigate(from, { replace: true });
+  }
+
+  
+  const showCreateShopBox = () => {
+    setCreateShopBox(true);
+  };
+
+  const hideCreateShopBox = () => {
+    console.log("hide shop box");
+    setCreateShopBox(false);
+  };
 
   const showCreateRoomBox = () => {
     setCreateRoomBox(true);
@@ -136,16 +162,76 @@ const Home = ({ setAuth }) => {
     height: '100vh',
   };
 
-  const boxStyle = {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: '#f0f0f0',
-    padding: '20px',
-    textAlign: 'center',
-  };
+    const boxStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        backgroundColor: '#f0f0f0',
+        textAlign: 'center',
+        height: '70%',
+        width: '70%',
+        borderRadius: '10px',  
+        border: '2px solid #000',  
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    };
 
+    const boxIDStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        backgroundColor: '#f0f0f0',
+        // padding: '5px',
+        textAlign: 'center',
+        height: '20%',
+        width: '80%',
+        borderRadius: '10px',  
+        border: '2px solid #000', 
+    };
+    
+    const titleStyle = {
+      fontSize: '30px',
+      fontWeight: 'bold',
+      color: '#000000',
+      margin: '-10px 0px',
+    };
+
+    const rowStyle = {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '100%',
+        alignItems: 'center',
+    };
+
+    const closeButtonStyle = {
+        padding: '10px 15px',
+        backgroundColor: closeButtonHover ? '#ff0000' : '#ffa500',
+        color: '#fff',
+        borderColor: 'black',
+        border: '',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        width: '30%',
+        transition: 'background-color 0.3s ease',
+    };
+
+    const joinButtonStyle = {
+        padding: '10px 15px',
+        backgroundColor: joinButtonHover ? '#3cb371' : '#66cdaa',
+        color: '#fff',
+        borderColor: 'black',
+        border: '',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        width: '30%',
+        transition: 'background-color 0.3s ease',
+    };
+    
   return (
     <div style={screenContainerStyle}>
       <div style={containerStyle}>
@@ -187,18 +273,28 @@ const Home = ({ setAuth }) => {
           <div style={div2RightStyle}>
             <HomeButton onClick={showCreateRoomBox} label='Start Game' buttonBackground='#E3A053' />
             <div style={emptyBoxStyle}></div>
-            <HomeButton onClick={homeButtonClick} label='Choose Table' buttonBackground='#72B174' />
+            <HomeButton onClick={showCreateRoomBox} label='Choose Table' buttonBackground='#72B174' />
             <div style={emptyBoxStyle}></div>
-            <HomeButton onClick={homeButtonClick} label='Shop' buttonBackground='#B969C6' />
+            <HomeButton onClick={showCreateShopBox} label='Shop' buttonBackground='#B969C6' />
 
-            {/* <button onClick={showBox}>Show Box</button> */}
-
-            {/* {isBoxVisible && (
+            {isCreateRoomBox && (
               <div style={boxStyle}>
-                <p>This is your small box!</p>
-                <button onClick={hideBox}>Close Box</button>
+                <p style={titleStyle}>Choose Table</p>
+                <label >
+                    <input name="myInput" style={{...boxIDStyle, ...titleStyle}}/>
+                </label>
+                <div style = {rowStyle}>
+                    <button  onClick={navigateToWaitingRoom} style = {joinButtonStyle} onMouseEnter={() => setJoinButtonHover(true)}
+      onMouseLeave={() => setJoinButtonHover(false)}>Join Room</button>
+                    <button  onClick={hideCreateRoomBox} style = {closeButtonStyle} onMouseEnter={() => setCloseButtonHover(true)}
+      onMouseLeave={() => setCloseButtonHover(false)}>Close Box</button>
+                </div>
               </div>
-            )} */}
+            )}
+            
+            {isCreateShopBox && (
+              <ShopBox hideCreateShopBox={hideCreateShopBox}/>
+            )}
           </div>
         </div>
       </div>
