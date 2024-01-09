@@ -1,11 +1,15 @@
+import './assets/css/style.scss';
+import { connect } from 'react-redux'
+
 import { useState } from "react";
 import { CssBaseline } from "@mui/material";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import InGame from "./pages/InGame";
 import WaitRoom from "./pages/WaitRoom";
+import Monopoly from "./components/monopoly/Monopoly";
+import NotFound from './components/not_found/NotFound';
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -28,15 +32,20 @@ function App() {
             )
           }
         />
-        <Route
-          path="/ingame"
-          element={
-            <InGame/>
-          }
-        />
+        <Route path="/monopoly" element={<Monopoly />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
 }
 
-export default App;
+const mapStateToProps = (store) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
