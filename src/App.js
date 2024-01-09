@@ -4,6 +4,7 @@ import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import InGame from "./pages/InGame";
 import WaitRoom from "./pages/WaitRoom";
 
 function App() {
@@ -25,6 +26,12 @@ function App() {
             ) : (
               <Navigate to="/login" state={{ from: location }} replace />
             )
+          }
+        />
+        <Route
+          path="/ingame"
+          element={
+            <InGame/>
           }
         />
       </Routes>
