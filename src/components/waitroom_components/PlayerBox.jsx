@@ -8,7 +8,7 @@ const PlayerBox = ({ name , color, skinUrl, avatarColor}) => {
     height: '40vh',
     background: '#ffe4b5',
     border: '2px solid black', // Thêm đường viền đen
-    borderRadius: '10px',
+    // borderRadius: '10px',
     display: 'flex',
     flexDirection: 'column',
     // justifyContent: 'center',
@@ -33,8 +33,8 @@ const PlayerBox = ({ name , color, skinUrl, avatarColor}) => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    // border: '1px solid black', // Thêm đường viền đen
-    // borderRadius: '12px',
+    // border: '2px solid black', // Thêm đường viền đen
+    // borderRadius: '10px',
   }
   const avatarStyle = {
     backgroundColor: avatarColor || deepOrange[500],

@@ -4,8 +4,7 @@ import { Container, Typography, Link, Box, Divider } from "@mui/material";
 import styled from "@emotion/styled";
 
 import PlayerBox from "../components/waitroom_components/PlayerBox";
-
-
+import BackButton from "../components/waitroom_components/back_button";
 
 
 let numPlayer = 4;
@@ -33,7 +32,10 @@ const DivHeadingStyle = styled("div")({
     alignItems: "center",
     alignSelf: "center",
     position: "relative",
+    textAlign: "center",
 });
+
+
 
 const HeadingStyle = styled("div")({
     fontSize: "30px",
@@ -46,6 +48,31 @@ const HeadingStyle = styled("div")({
     left: "50%",
     transform: "translate(-50%, -50%)",
 });
+
+const RoomIDTitleStyle = styled("div")({
+    fontSize: "20px",
+    fontWeight: "bold",
+    position: "absolute",
+    top: "30%",
+    left: "60vh",
+    transform: "translate(0%, 0%)",
+  });
+
+  const RoomIDNumberStyle = styled("div")({
+    fontSize: "20px",
+    position: "absolute",
+    top: "30%",
+    left: "73vh",
+    //transform: "translate(-50%, -50%)",
+  });
+
+  const BackButtonStyle = {
+    position: "absolute",
+    top: "20%",
+    left: "-90vh",
+  }
+    //transform: "translate(-50%, -50%)",);
+
 
 const PlayerBoxContainer = styled("div")({
     flex: '4',
@@ -65,6 +92,7 @@ const WaitRoom = ({ setAuth }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/login";
+    const backToHome = location.state?.from?.pathname ||"/";
     const [playButtonHover, setPlayButtonHover] = useState(false);
 
     const navigateToGameRoom = () => {
@@ -72,6 +100,12 @@ const WaitRoom = ({ setAuth }) => {
         setAuth(false);
         navigate(from, { replace: true });
       }
+
+    const navigateToHome = () => {
+        console.log('Navigate to home');
+        setAuth(true);
+        navigate(backToHome, { replace: true });
+        }
 
     const divPlayButtonStyle = {
         alignSelf: 'center',
@@ -100,9 +134,16 @@ const WaitRoom = ({ setAuth }) => {
     return (
         <RootStyle>
                 <DivHeadingStyle>
+                    <BackButton style = {BackButtonStyle} navigateToHome={navigateToHome}/>
                     <HeadingStyle>
                         RESTROOM
                     </HeadingStyle>
+                    <RoomIDTitleStyle>
+                        RoomID:
+                    </RoomIDTitleStyle>
+                    <RoomIDNumberStyle>
+                        123456
+                    </RoomIDNumberStyle>
                 </DivHeadingStyle>
             <PlayerBoxContainer>
                 {players.map((player, index) => (
