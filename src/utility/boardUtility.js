@@ -33,7 +33,7 @@ export const calculatePositionsHelper = (site, positions, side1, side2, side3, s
 export const calculatePositions = (board) =>{
     let {side: boardSide, rowWidth} = board
     let rowLength = boardSide - rowWidth;
-    let firstSiteLength = 120
+    let firstSiteLength = 140
     let totalSitesInRow = 10
     let siteLength = Math.floor((rowLength - firstSiteLength)/(totalSitesInRow-1))
     let playerSize = 30

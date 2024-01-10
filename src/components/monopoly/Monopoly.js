@@ -24,7 +24,7 @@ const Monopoly = ({ modalData, currentCard, playersData, setBoardSize, calculate
         let side = 900
         let boardData = {
             side: side,
-            rowWidth: 120
+            rowWidth: 140
         }
         setBoardSize(boardData)
         calculateSitePositions(boardData)
