@@ -13,8 +13,8 @@ const Actions = ({ setAction, active: disabled }) => {
         <div className={style.actions}>
             <button disabled={disabled} className={`${style.build} ${style.btn} `} onClick={setActionHelper} action-type={actionTypes.BUILD}>Build</button>
             <button disabled={disabled} className={`${style.sell} ${style.btn}`} onClick={setActionHelper} action-type={actionTypes.SELL}>Sell</button>
-            <button disabled={disabled} className={`${style.mortgage} ${style.btn}`} onClick={setActionHelper} action-type={actionTypes.MORTGAGE}>Mortgage</button>
-            <button disabled={disabled} className={`${style.redeem} ${style.btn}`} onClick={setActionHelper} action-type={actionTypes.REDEEM}>Redeem</button>
+            {/* <button disabled={disabled} className={`${style.mortgage} ${style.btn}`} onClick={setActionHelper} action-type={actionTypes.MORTGAGE}>Mortgage</button> */}
+            {/* <button disabled={disabled} className={`${style.redeem} ${style.btn}`} onClick={setActionHelper} action-type={actionTypes.REDEEM}>Redeem</button> */}
         </div>
     )
 }
