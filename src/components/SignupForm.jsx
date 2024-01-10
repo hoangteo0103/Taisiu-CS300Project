@@ -2,6 +2,9 @@ import * as Yup from "yup";
 import { useState } from "react";
 import { useFormik, Form, FormikProvider } from "formik";
 import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+import * as myConst from '../constant.js';
 import {
   Stack,
   Box,
@@ -44,6 +47,24 @@ const SignupForm = ({ setAuth }) => {
       .required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
+  
+  function signup(firstName, lastName, email, password) {
+    axios.post(myConst.baseURL + "/auth/signup/", {
+      email: email,
+      name: firstName + " " + lastName,
+      password: password,
+    })
+    .then((response) => {
+      console.log(response);
+      setAuth(true);
+      navigate("/login", { replace: true });
+    })
+    .catch((error) => {
+      console.log("error");
+      formik.isSubmitting = false;
+    });
+  }
+
 
   const formik = useFormik({
     initialValues: {
@@ -54,10 +75,7 @@ const SignupForm = ({ setAuth }) => {
     },
     validationSchema: SignupSchema,
     onSubmit: () => {
-      setTimeout(() => {
-        setAuth(true);
-        navigate("/", { replace: true });
-      }, 2000);
+      signup(formik.values.firstName, formik.values.lastName, formik.values.email, formik.values.password);
     },
   });
 
