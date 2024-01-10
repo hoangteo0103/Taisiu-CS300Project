@@ -22,7 +22,7 @@ const BuyCardModal = ({ card, setShowModal, buySite, activePlayer, sites, debitP
             <CardModal card={sites[card]} />
             <div className={style.btnContainer}>
                 <button className={`${style.btn} ${style.buy}`} onClick={onBuy}>Buy</button>
-                <button className={`${style.btn} ${style.auction}`} onClick={onAuction}>Auction</button>
+                <button className={`${style.btn} ${style.auction}`} onClick={onAuction}>Close</button>
             </div>
         </div>
     );
