@@ -16,9 +16,9 @@ const Board = ({ side, totalPlayers, sites, active }) => {
             <div className={style.board} style={{ width: side + "px", height: side + "px" }} >
                 {[
                     sites.slice(0, 10).reverse(),
-                    sites.slice(10, 20).reverse(),
+                    sites.slice(10, 20),
                     sites.slice(20, 30),
-                    sites.slice(30, 40),
+                    sites.slice(30, 40).reverse(),
                 ].map((data, index) => <Row key={index} data={data} rowNum={index + 1} />)}
                 <DiceContainer />
                 <DoneButton />

@@ -4,8 +4,8 @@
     /* border-top: 1px solid black; */
     /* border-left: 1px solid black; */
     cursor: pointer;
-    background: rgb(233,233,233);
-    background: linear-gradient(0deg, rgba(233,233,233,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
+    background: white;
+    // background: linear-gradient(0deg, rgba(233,233,233,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
     align-items: center;
     transition: filter 0.15s;
 }
@@ -17,7 +17,7 @@
     align-items: center;
     font-weight: bold;
     font-style: italic;
-    background: linear-gradient(0deg, rgba(233,233,233,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
+    // background: linear-gradient(0deg, rgba(233,233,233,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
     transition: filter 0.3s;
     /* border-left: 1px solid black; */
 }
@@ -36,12 +36,14 @@
     text-align: center;
     width: 100%;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    transform: rotate(90deg);
 }
 .sellingPrice, .debit{
     font-size: 13px;
-    font-weight: bold;
+    // font-weight: bold;
 }
 .name{
     font-size: 10px;

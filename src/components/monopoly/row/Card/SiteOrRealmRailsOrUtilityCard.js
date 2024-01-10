@@ -7,7 +7,7 @@ const SiteOrRealmRailsOrUtilityCard = ({ data, rowNum, boughtBy, onCardClick, ac
     const genClassList = () => {
         let classList = ""
         classList += style.card + " "
-        classList += rowNum === 1 || rowNum === 2 ? style.reverse + " " : ""
+        classList += rowNum === 1 || rowNum === 2 ? style.reverse + " " : style.reverse + " "
         classList += (rowNum === 1 || rowNum === 2) && (boughtBy != null) ? `${style.sold} ${style.soldRev} ${style[colors[boughtBy]]} ` : ""
         classList += (rowNum === 3 || rowNum === 4) && (boughtBy != null) ? `${style.sold} ${style[colors[boughtBy]]} ` : ""
         classList += !active ? style.inactive + " " : ""
