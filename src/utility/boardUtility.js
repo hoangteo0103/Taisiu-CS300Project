@@ -1,33 +1,31 @@
-
-
 export const calculatePositionsHelper = (site, positions, side1, side2, side3, side4) => {
     positions[site] = {
-        "right": side1,
-        "bottom": side2,
-        "left": side3,
-        "top": side4,
-        "site": site, 
-    }
-    positions[site+10] = {
         "bottom": side1,
         "left": side2,
         "top": side3,
         "right": side4,
-        "site": site + 10,
+        "site": site,
     }
-    positions[site+20] = {
+    positions[site + 10] = {
         "left": side1,
         "top": side2,
         "right": side3,
         "bottom": side4,
-        "site": site + 20,
+        "site": site + 10,
     }
-    
-    positions[site+30] = {
+    positions[site + 20] = {
         "top": side1,
         "right": side2,
         "bottom": side3,
         "left": side4,
+        "site": site + 20,
+    }
+
+    positions[site + 30] = {
+        "right": side1,
+        "bottom": side2,
+        "left": side3,
+        "top": side4,
         "site": site + 30,
     }
 }

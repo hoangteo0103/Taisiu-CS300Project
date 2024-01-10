@@ -1,25 +1,20 @@
 .card{
     flex: 1 1 0px;
     display: flex;
-    /* border-top: 1px solid black; */
-    /* border-left: 1px solid black; */
     cursor: pointer;
     background: white;
-    // background: linear-gradient(0deg, rgba(233,233,233,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
     align-items: center;
     transition: filter 0.15s;
 }
 
 .specialCard{
-    flex-basis: 120px;
+    flex-basis: 140px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     font-style: italic;
-    // background: linear-gradient(0deg, rgba(233,233,233,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
     transition: filter 0.3s;
-    /* border-left: 1px solid black; */
 }
 .chest{
     justify-content: center;
@@ -30,23 +25,25 @@
     height: 100%;
     width: 20px;
     opacity: 0.6;
-    /* background-blend-mode: lighten; */
 }
 .details{
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 100%;
     display: flex;
-    flex: 1;
     justify-content: space-between;
-    flex-direction: column-reverse;
-    transform: rotate(90deg);
+    height: 68.888px;
 }
 .sellingPrice, .debit{
-    font-size: 13px;
-    // font-weight: bold;
+    font-size: 10px;
+    writing-mode: vertical-rl;
 }
 .name{
     font-size: 10px;
+    font-weight: 700;
+    writing-mode: vertical-rl;
+    white-space: normal;
 }
 .reverse{
     flex-direction: row-reverse;
@@ -69,17 +66,17 @@
     content: '';
     display: inline-block;
     position: absolute;
-    left: -12px;
-    border-right: 12px solid transparent;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;    
+    left: -14px;
+    border-right: 14px solid transparent;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;    
     /* filter: brightness(90%); */
 }
 
 .soldRev::before{
     border-right: none;
-    border-left: 12px solid transparent;
-    right: -12px;
+    border-left: 14px solid transparent;
+    right: -14px;
     left:unset;
 }
 

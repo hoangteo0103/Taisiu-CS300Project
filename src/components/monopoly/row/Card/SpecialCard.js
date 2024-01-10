@@ -22,7 +22,7 @@ const SpecialCard = ({ rowNum, active }) => {
     }
 
     return (
-        <div className={genClassList()} style={{ backgroundImage: `url(${SpecialCardBG[rowNum]})` }}>
+        <div className={genClassList()} style={{ backgroundImage: `url(${SpecialCardBG[rowNum]})`, backgroundSize: 'cover' }}>
         </div>
     );
 }

@@ -21,7 +21,7 @@ const Monopoly = ({ modalData, currentCard, playersData, setBoardSize, calculate
     useEffect(() => {
         let w = window.innerWidth;
         let h = window.innerHeight;
-        let side = (Math.min(w, h) - 100)
+        let side = 900
         let boardData = {
             side: side,
             rowWidth: 120
