@@ -7,14 +7,14 @@ export const socketMiddleware = (socket) => (params) => (next) => (action) => {
   
     switch (type) {
       case 'socket/connect':
-        socket.connect(socketURL)
-        dispatch({ type: 'socket/set', payload: socket });
+        // socket.connect(socketURL)
+        // dispatch({ type: 'socket/set', payl/oad: socket });
         break
       case 'socket/create_new_game':
-        socket.send('create_new_game', action.payload)
+        // socket.send('create_new_game', action.payload)
         break
       case 'socket/disconnect':
-        socket.disconnect()
+        // socket.disconnect()
         break
   
       default:

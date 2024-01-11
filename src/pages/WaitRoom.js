@@ -143,12 +143,12 @@ const WaitRoom = ({ setAuth }) => {
     useEffect(() => {
         dispatch({ type: 'socket/create_new_game' , payload: {username: user.username} })
         
-        socket.on('gameCreated', (data) => {
-            console.log('gameCreated', data);
-            setGameId(data.gameId);
-        })
+        // socket.on('gameCreated', (data) => {
+        //     console.log('gameCreated', data);
+        //     setGameId(data.gameId);
+        // })
         return () => {
-            dispatch({ type: 'socket/disconnect' })
+           // dispatch({ type: 'socket/disconnect' })
           }      
     }, []);
 
