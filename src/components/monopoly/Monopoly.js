@@ -15,8 +15,8 @@ import { setSites } from '../../redux/actions/site';
 import sites from '../../assets/data/boardData.json'
 import MyCards from './modal/MyCards';
 
-const Monopoly = ({ modalData, currentCard, playersData, setBoardSize, calculateSitePositions, setTotalPlayers, setSites }) => {
-    const totalPlayers = 1;
+const Monopoly = ({ modalData, currentCard, playersData, setBoardSize, calculateSitePositions, setTotalPlayers, setSites, isEnd }) => {
+    const totalPlayers = 2;
     const isMounted = useRef(false)
     useEffect(() => {
         let w = window.innerWidth;
@@ -64,8 +64,8 @@ const mapStateToProps = (store) => {
     return {
         modalData: store.modalData,
         currentCard: store.card.currentCard,
-        playersData: store.playersData
-
+        playersData: store.playersData,
+        isEnd: store.board.isEnd
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Monopoly)
