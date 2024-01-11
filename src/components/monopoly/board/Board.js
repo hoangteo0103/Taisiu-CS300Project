@@ -12,7 +12,7 @@ import DoneButton from '../donebutton/DoneButton';
 import { BoardGame } from '../row/BoardCell';
 import { setIsEnd } from '../../../redux/actions/board';
 
-const GameNotice = ({ totalPlayers, players }) => {
+const GameNotice = ({ totalPlayers, players, setIsEnd }) => {
     const noticeStyle = {
       backgroundColor: '#f44336', // Red background color
       color: '#ffffff', // White text color
@@ -45,6 +45,7 @@ const GameNotice = ({ totalPlayers, players }) => {
 
     const handleReturnHome = () => {
         // Navigate to the homepage
+        setIsEnd(false);
         navigate('/waitroom');
     };
   
@@ -57,7 +58,7 @@ const GameNotice = ({ totalPlayers, players }) => {
     );
 };
 
-const Board = ({ side, totalPlayers, sites, active, isEnd, players }) => {
+const Board = ({ side, totalPlayers, sites, active, isEnd, players, setIsEnd }) => {
     return (
         <>
             <div className={style.board} style={{ width: side + "px", height: side + "px" }} >
@@ -67,7 +68,7 @@ const Board = ({ side, totalPlayers, sites, active, isEnd, players }) => {
                     sites.slice(20, 30),
                     sites.slice(30, 40).reverse(),
                 ].map((data, index) => <Row key={index} data={data} rowNum={index + 1} />)}
-                {isEnd && <GameNotice totalPlayers={totalPlayers} players={players} />}
+                {isEnd && <GameNotice totalPlayers={totalPlayers} players={players} setIsEnd={setIsEnd} />}
                 {!isEnd && <DiceContainer />}
                 {!isEnd && <DoneButton />}
                 <PlayerContainer totalPlayers={totalPlayers} />
