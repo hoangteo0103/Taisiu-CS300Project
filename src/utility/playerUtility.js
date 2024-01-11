@@ -7,7 +7,7 @@ export const createPlayerData = (totalPlayers) => {
             site: 0,
             previousSite: 0,
             playerId: player,
-            money: 1000000,
+            money: 1000,
             isMoving: false,
             direction: directions.FORWARD
         }
