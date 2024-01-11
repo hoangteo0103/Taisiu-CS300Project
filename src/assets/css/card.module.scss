@@ -1,0 +1,129 @@
+.card{
+    flex: 1 1 0px;
+    display: flex;
+    cursor: pointer;
+    background: white;
+    align-items: center;
+    transition: filter 0.15s;
+    border-left: 2px solid black !important;
+    border-right: 2px solid black !important;
+    border-top: 1px solid black !important;
+    border-bottom: 1px solid black !important;
+}
+
+.specialCard{
+    flex-basis: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-style: italic;
+    transition: filter 0.3s;
+    border-left: 2px solid black !important;
+    border-right: 2px solid black !important;
+    border-top: 2px solid black !important;
+    border-bottom: 2px solid black !important;
+}
+.chest{
+    justify-content: center;
+    align-items:start;
+    padding-right: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    writing-mode: vertical-rl;
+    white-space: normal;
+}
+.strip{
+    height: 100%;
+    width: 20px;
+    opacity: 0.6;
+    border-left: 2px solid black !important;
+}
+.details{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 68.888px;
+}
+.sellingPrice, .debit{
+    font-size: 10px;
+    writing-mode: vertical-rl;
+    white-space: normal;
+}
+.name{
+    font-size: 10px;
+    font-weight: 700;
+    writing-mode: vertical-rl;
+    white-space: normal;
+}
+.reverse{
+    flex-direction: row-reverse;
+    border-left: none;
+    /* border-right: 1px solid black; */
+    border-top: none;
+    /* border-bottom: 1px solid black; */
+}   
+
+
+.reverseSpecialCard{
+    border-left: none;
+    /* border-right: 1px solid black; */
+}
+
+
+
+/* To show player ownorship mark color */
+.sold::before{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: -14px;
+    border-right: 14px solid transparent;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;    
+    /* filter: brightness(90%); */
+}
+
+.soldRev::before{
+    border-right: none;
+    border-left: 14px solid transparent;
+    right: -14px;
+    left:unset;
+}
+
+.red::before{
+    border-left-color: red;
+    border-right-color: red;
+}
+.yellow::before{
+    border-left-color: yellow;
+    border-right-color: yellow;
+}
+
+.green::before{
+    border-left-color: green;
+    border-right-color: green;
+}
+.blue::before{
+    border-left-color: blue;
+    border-right-color: blue;
+}
+
+
+/* Mortgaged */
+.mortgaged{
+    position: absolute;
+    width: 32px;
+    height: auto;
+}
+
+
+/* inactive Card */
+.inactive{
+    filter: brightness(0.7);
+    cursor: default;
+}
