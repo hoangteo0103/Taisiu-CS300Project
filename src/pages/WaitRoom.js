@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 
+import { socket } from '../socket/socket';
 
 import PlayerBox from "../components/waitroom_components/PlayerBox";
 import BackButton from "../components/waitroom_components/back_button";
@@ -92,9 +93,11 @@ for (let i = 0; i < numPlayer; i++) {
 }
 
 const WaitRoom = ({ setAuth }) => {
+
+    const [isConnected, setIsConnected] = useState(socket.connected);
+    const [fooEvents, setFooEvents] = useState([]);
     const dispatch = useDispatch()
     const user = useSelector(state => state.user).user;
-    const socket = useSelector(state => state.socket.socket);
     const [gameId, setGameId] = useState("");
   
 
@@ -141,16 +144,34 @@ const WaitRoom = ({ setAuth }) => {
     };
 
     useEffect(() => {
-        dispatch({ type: 'socket/create_new_game' , payload: {username: user.username} })
-        
-        // socket.on('gameCreated', (data) => {
-        //     console.log('gameCreated', data);
-        //     setGameId(data.gameId);
-        // })
+        function onConnect() {
+          console.log('Connected');
+          setIsConnected(true);
+        }
+    
+        function onDisconnect() {
+          setIsConnected(false);
+        }
+    
+        function onFooEvent(value) {
+          setFooEvents(previous => [...previous, value]);
+        }
+    
+        socket.on('connect', onConnect);
+        socket.on('disconnect', onDisconnect);
+        if (isConnected) {
+          socket.emit('newGame' , {email: user.email})
+        }
+        socket.on('gameCreated', (data) => {
+          setGameId(data.gameId);
+        });
+    
         return () => {
-           // dispatch({ type: 'socket/disconnect' })
-          }      
-    }, []);
+          socket.off('connect', onConnect);
+          socket.off('disconnect', onDisconnect);
+          socket.off('foo', onFooEvent);
+        };
+      }, []);
 
     return (
         <RootStyle>
