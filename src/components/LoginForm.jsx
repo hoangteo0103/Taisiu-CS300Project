@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import { Form, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import * as myConst from '../constant.js';
+import { connect } from 'react-redux';
 
 import {
   Box,
@@ -16,6 +19,8 @@ import {
 import { LoadingButton } from "@mui/lab";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
+import { setUser, clearUser } from "../redux/actions/userActions.js";
+
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 const animate = {
@@ -28,7 +33,7 @@ const animate = {
   },
 };
 
-const LoginForm = ({ setAuth }) => {
+const LoginForm = ({ setAuth}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -42,6 +47,27 @@ const LoginForm = ({ setAuth }) => {
     password: Yup.string().required("Password is required"),
   });
 
+  function login(email, password) {
+    const dispatch = useDispatch();
+
+    console.log("login");
+    axios
+      .post(myConst.baseURL + "/auth/login/", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+        setAuth(true);
+        dispatch(setUser(response.data));
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log("error");
+        formik.isSubmitting = false;
+      });
+  } 
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -51,11 +77,7 @@ const LoginForm = ({ setAuth }) => {
     validationSchema: LoginSchema,
     onSubmit: () => {
       console.log("submitting...");
-      setTimeout(() => {
-        console.log("submited!!");
-        setAuth(true);
-        navigate(from, { replace: true });
-      }, 2000);
+      login(formik.values.email, formik.values.password);
     },
   });
 
@@ -166,4 +188,4 @@ const LoginForm = ({ setAuth }) => {
   );
 };
 
-export default LoginForm;
+export default connect(null, { setUser })(LoginForm);
