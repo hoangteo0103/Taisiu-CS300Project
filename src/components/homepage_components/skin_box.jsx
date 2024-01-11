@@ -1,7 +1,7 @@
 import React from 'react';
 import {Avatar} from "@mui/material";
 import { deepOrange, deepPurple } from '@mui/material/colors';
-const SkinBox = ({name , color, skinUrl, avatarColor}) => {
+const SkinBox = ({name , color, skinUrl, avatarColor, style, buyNotAppear}) => {
     const [buyButtonHover, setBuyButtonHover] = React.useState(false);
     const boxStyle = {
         width: '15%',
@@ -15,10 +15,11 @@ const SkinBox = ({name , color, skinUrl, avatarColor}) => {
         // alignItems: 'center',
         color: 'white',
         position: 'relative',
+        ...style,
     };
     const nameBox = {
         flex: '1',
-        background: 'green',
+        background: color,
         width: '100%',
         height: '20%', 
         display: 'flex',
@@ -36,6 +37,8 @@ const SkinBox = ({name , color, skinUrl, avatarColor}) => {
         width: '100%',
     }
     const buyButtonStyle = {
+        display: buyNotAppear ?  'none'  :'flex' ,
+
         flex: '1',
         padding: '10px 15px',
         fontSize: '15px',
@@ -47,19 +50,21 @@ const SkinBox = ({name , color, skinUrl, avatarColor}) => {
         cursor: 'pointer',
         width: '100%',
         transition: 'background-color 0.3s ease',
+        // alignContent: 'center',
+        justifyContent: 'center',
     }
   
 
   return (
-        <div style={boxStyle}>
-            <div style={nameBox}>
-                <p>{name}</p>
+            <div style={boxStyle}>
+                <div style={nameBox}>
+                    <p>{name}</p>
+                </div>
+                <img src={skinUrl} alt={`Avatar of ${name}`} style={skinStyle} />
+                <button style = {buyButtonStyle} onMouseEnter = {() => setBuyButtonHover(true)} onMouseLeave = {() => setBuyButtonHover(false)}>
+                    Buy
+                </button>
             </div>
-            <img src={skinUrl} alt={`Avatar of ${name}`} style={skinStyle} />
-            <button style = {buyButtonStyle} onMouseEnter = {() => setBuyButtonHover(true)} onMouseLeave = {() => setBuyButtonHover(false)}>
-                Buy
-            </button>
-        </div>
   );
 }
 

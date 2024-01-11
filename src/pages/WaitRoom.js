@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import { Container, Typography, Link, Box, Divider } from "@mui/material";
 import styled from "@emotion/styled";
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+
+import { socket } from '../socket/socket';
 
 import PlayerBox from "../components/waitroom_components/PlayerBox";
 import BackButton from "../components/waitroom_components/back_button";
+import { use } from 'passport';
 
 
 let numPlayer = 4;
@@ -89,6 +94,13 @@ for (let i = 0; i < numPlayer; i++) {
 
 const WaitRoom = ({ setAuth }) => {
 
+    const [isConnected, setIsConnected] = useState(socket.connected);
+    const [fooEvents, setFooEvents] = useState([]);
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user).user;
+    const [gameId, setGameId] = useState("");
+  
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/monopoly";
@@ -131,6 +143,36 @@ const WaitRoom = ({ setAuth }) => {
         transform: 'translate(-50%, -50%)',
     };
 
+    useEffect(() => {
+        function onConnect() {
+          console.log('Connected');
+          setIsConnected(true);
+        }
+    
+        function onDisconnect() {
+          setIsConnected(false);
+        }
+    
+        function onFooEvent(value) {
+          setFooEvents(previous => [...previous, value]);
+        }
+    
+        socket.on('connect', onConnect);
+        socket.on('disconnect', onDisconnect);
+        if (isConnected) {
+          socket.emit('newGame' , {email: user.email})
+        }
+        socket.on('gameCreated', (data) => {
+          setGameId(data.gameId);
+        });
+    
+        return () => {
+          socket.off('connect', onConnect);
+          socket.off('disconnect', onDisconnect);
+          socket.off('foo', onFooEvent);
+        };
+      }, []);
+
     return (
         <RootStyle>
                 <DivHeadingStyle>
@@ -142,7 +184,7 @@ const WaitRoom = ({ setAuth }) => {
                         RoomID:
                     </RoomIDTitleStyle>
                     <RoomIDNumberStyle>
-                        123456
+                        {gameId}
                     </RoomIDNumberStyle>
                 </DivHeadingStyle>
             <PlayerBoxContainer>
