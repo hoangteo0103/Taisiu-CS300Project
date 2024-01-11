@@ -1,10 +1,11 @@
-import { CALC_SITE_POSITIONS, SET_BOARD_SIZE, SET_IS_DONE } from "../actions/actionTypes";
+import { CALC_SITE_POSITIONS, SET_BOARD_SIZE, SET_IS_DONE, SET_IS_END } from "../actions/actionTypes";
 import {calculatePositions} from '../../utility/boardUtility'
 const initialState = {
     side: null,
     rowWidth: null,
     positions: [],
-    isDone: false
+    isDone: false,
+    isEnd: false
 }
 
 export default function board(state=initialState, action){
@@ -26,6 +27,11 @@ export default function board(state=initialState, action){
             return {
                 ...state,
                 isDone: payload
+            }
+        case SET_IS_END:
+            return {
+                ...state,
+                isEnd: payload
             }
         default:
             return state

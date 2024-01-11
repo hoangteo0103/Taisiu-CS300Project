@@ -18,6 +18,7 @@ export const SET_DICE_SUM = "SET_DICE_SUM"
 export const SET_BOARD_SIZE = "SET_BOARD_SIZE"
 export const CALC_SITE_POSITIONS = "CALC_SITE_POSITIONS"
 export const SET_IS_DONE = "SET_IS_DONE"
+export const SET_IS_END = "SET_IS_END"
 
 
 // Sites

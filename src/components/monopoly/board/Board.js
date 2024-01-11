@@ -9,8 +9,9 @@ import Actions from '../modal/Actions';
 import ActionInfo from '../action/ActionInfo';
 import DoneButton from '../donebutton/DoneButton';
 import { BoardGame } from '../row/BoardCell';
+import { setIsEnd } from '../../../redux/actions/board';
 
-const Board = ({ side, totalPlayers, sites, active }) => {
+const Board = ({ side, totalPlayers, sites, active, isEnd }) => {
     return (
         <>
             <div className={style.board} style={{ width: side + "px", height: side + "px" }} >
@@ -33,7 +34,7 @@ const Board = ({ side, totalPlayers, sites, active }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        setIsEnd: isEnd => dispatch(setIsEnd(isEnd)),
     }
 }
 
@@ -42,7 +43,8 @@ const mapStateToProps = (store) => {
         side: store.board.side,
         totalPlayers: store.playersData.totalPlayers,
         sites: store.siteData.sites,
-        active: store.actionData.active
+        active: store.actionData.active,
+        isEnd: store.board.isEnd
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Board)
