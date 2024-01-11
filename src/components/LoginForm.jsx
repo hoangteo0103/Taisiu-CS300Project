@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux'
 import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import { Form, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
@@ -36,6 +37,7 @@ const animate = {
 const LoginForm = ({ setAuth}) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const from = location.state?.from?.pathname || "/";
 
   const [showPassword, setShowPassword] = useState(false);
@@ -48,7 +50,6 @@ const LoginForm = ({ setAuth}) => {
   });
 
   function login(email, password) {
-    const dispatch = useDispatch();
 
     console.log("login");
     axios
