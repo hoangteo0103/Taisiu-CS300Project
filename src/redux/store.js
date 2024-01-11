@@ -1,14 +1,17 @@
-import {createStore} from "redux";
 // import thunk from "redux-thunk";
 import rootReducer from "./reducers/rootReducer";
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 
-export default function configureStore(){
-    return createStore(
-        rootReducer,
-        // applyMiddleware(
-            // thunk,
-            
-        process.env.NODE_ENV==="development"?window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__():""
-        // )
+import { Socket } from '../socket/socket'
+import {socketMiddleware} from '../socket/socketMiddleware'
+
+export default function createStore(){
+    return configureStore({
+        reducer: rootReducer,
+        middleware: (getDefaultMiddleware) => [
+            ...getDefaultMiddleware(),
+            socketMiddleware(new Socket()),    
+        ],
+            devTools: process.env.NODE_ENV !== 'production',}
     )
 }
