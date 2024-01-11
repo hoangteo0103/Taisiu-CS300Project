@@ -9,10 +9,12 @@ import HomeButton from "../components/homepage_components/button";
 import ShopBox from "../components/homepage_components/shop_box";
 import React, { useState } from 'react';
 import SoundComponent from "../components/homepage_components/sound";
+import { useSelector } from 'react-redux'
 //////////////////////////////////////
 
 const Home = ({ setAuth }) => {
   const theme = useTheme();
+  const user = useSelector(state => state.user).user;
 
   const instructionPath = '/assets/homepage/instruction.png';
   const goldPath = '/assets/homepage/gold.png'
@@ -60,6 +62,7 @@ const Home = ({ setAuth }) => {
   const instructionButtonClick = () => {
     // Handle button click event
     console.log('Instruction clicked!');
+    console.log(user);
   };
 
   const homeButtonClick = () => {
@@ -237,8 +240,8 @@ const Home = ({ setAuth }) => {
       <div style={containerStyle}>
         <div style={div1Style}>
           <div style={div1LeftStyle}>
-            <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
-            <p style={textWithPaddingStyle}>Username</p>
+            <Avatar sx={{ bgcolor: deepOrange[500] }}>{user.name[0]} </Avatar>
+            <p style={textWithPaddingStyle}>{user.username}</p>
           </div>
 
           <div style={div1MiddleStyle}>

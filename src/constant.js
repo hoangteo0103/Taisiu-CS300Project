@@ -1,1 +1,1 @@
-export const baseURL = 'http://localhost:3001';
+export const baseURL = 'https://monopoly-game-production.up.railway.app';
