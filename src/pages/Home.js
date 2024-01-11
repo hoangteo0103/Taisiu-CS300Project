@@ -10,9 +10,11 @@ import ShopBox from "../components/homepage_components/shop_box";
 import React, { useState } from 'react';
 import SoundComponent from "../components/homepage_components/sound";
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 //////////////////////////////////////
 
 const Home = ({ setAuth }) => {
+  const dispatch = useDispatch()
   const theme = useTheme();
   const user = useSelector(state => state.user).user;
 
@@ -34,6 +36,7 @@ const Home = ({ setAuth }) => {
     console.log('Navigate to waiting room');
     setAuth(false);
     navigate(from, { replace: true });
+    dispatch({ type: 'socket/connect' })
   }
 
   
@@ -274,9 +277,9 @@ const Home = ({ setAuth }) => {
             <img src={monopolyPath} alt="Description of the image" style={monopolyStyle} />
           </div>
           <div style={div2RightStyle}>
-            <HomeButton onClick={showCreateRoomBox} label='Start Game' buttonBackground='#E3A053' />
+            <HomeButton onClick={navigateToWaitingRoom} label = 'Create New Game' buttonBackground='#E3A053' />
             <div style={emptyBoxStyle}></div>
-            <HomeButton onClick={showCreateRoomBox} label='Choose Table' buttonBackground='#72B174' />
+            <HomeButton onClick={showCreateRoomBox} label='Join Game' buttonBackground='#72B174' />
             <div style={emptyBoxStyle}></div>
             <HomeButton onClick={showCreateShopBox} label='Shop' buttonBackground='#B969C6' />
 

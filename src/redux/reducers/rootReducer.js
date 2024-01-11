@@ -7,6 +7,8 @@ import modal from './modal'
 import site from './site'
 import action from './action'
 import user from './user'
+import socketReducer from './socket'
+
 export default combineReducers({
     card,
     playersData: player,
@@ -15,5 +17,6 @@ export default combineReducers({
     modalData: modal,
     siteData: site,
     actionData: action,
-    user
+    user,
+    socket: socketReducer
 })

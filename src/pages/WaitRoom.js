@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import { Container, Typography, Link, Box, Divider } from "@mui/material";
 import styled from "@emotion/styled";
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+
 
 import PlayerBox from "../components/waitroom_components/PlayerBox";
 import BackButton from "../components/waitroom_components/back_button";
+import { use } from 'passport';
 
 
 let numPlayer = 4;
@@ -88,6 +92,11 @@ for (let i = 0; i < numPlayer; i++) {
 }
 
 const WaitRoom = ({ setAuth }) => {
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user).user;
+    const socket = useSelector(state => state.socket.socket);
+    const [gameId, setGameId] = useState("");
+  
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -131,6 +140,18 @@ const WaitRoom = ({ setAuth }) => {
         transform: 'translate(-50%, -50%)',
     };
 
+    useEffect(() => {
+        dispatch({ type: 'socket/create_new_game' , payload: {username: user.username} })
+        
+        // socket.on('gameCreated', (data) => {
+        //     console.log('gameCreated', data);
+        //     setGameId(data.gameId);
+        // })
+        return () => {
+           // dispatch({ type: 'socket/disconnect' })
+          }      
+    }, []);
+
     return (
         <RootStyle>
                 <DivHeadingStyle>
@@ -142,7 +163,7 @@ const WaitRoom = ({ setAuth }) => {
                         RoomID:
                     </RoomIDTitleStyle>
                     <RoomIDNumberStyle>
-                        123456
+                        {gameId}
                     </RoomIDNumberStyle>
                 </DivHeadingStyle>
             <PlayerBoxContainer>
