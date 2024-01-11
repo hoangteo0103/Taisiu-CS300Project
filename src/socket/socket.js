@@ -1,6 +1,7 @@
 class Socket {
     constructor() {
       this.socket = null
+
     }
   
     connect(url) {
@@ -15,12 +16,18 @@ class Socket {
         this.socket = null
       }
     }
-  
-    send(message) {
-      if (this.socket) {
-        this.socket.send(JSON.stringify(message))
-      }
+
+    async send(message, payload) {
+    console.log('send', message, payload)
+    payload["event"] = message
+    if (this.socket.readyState) {
+        this.socket.send(JSON.stringify(payload))
+    } else {
+      setTimeout(() => {
+        this.send(message, payload)
+      }, 100);
     }
+  }
   
     on(eventName, callback) {
       if (this.socket) {
