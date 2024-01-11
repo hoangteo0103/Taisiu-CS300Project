@@ -7,6 +7,7 @@ import CircleButtonWithImage from "../components/homepage_components/circle_butt
 import RectangleComponent from "../components/homepage_components/ranking";
 import HomeButton from "../components/homepage_components/button";
 import ShopBox from "../components/homepage_components/shop_box";
+import SkinBox from "../components/homepage_components/skin_box";
 import React, { useState } from 'react';
 import SoundComponent from "../components/homepage_components/sound";
 import { useSelector } from 'react-redux'
@@ -26,7 +27,7 @@ const Home = ({ setAuth }) => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/waitroom";
 
-
+  const [isStartGameBox, setStartGameBox] = useState(false);
   const [isCreateRoomBox, setCreateRoomBox] = useState(false);
   const [closeButtonHover, setCloseButtonHover] = useState(false);
   const [joinButtonHover, setJoinButtonHover] = useState(false);
@@ -39,6 +40,13 @@ const Home = ({ setAuth }) => {
     dispatch({ type: 'socket/connect' })
   }
 
+  const showStartGameBox = () => {
+    setStartGameBox(true);
+    };
+
+    const hideStartGameBox = () => {
+        setStartGameBox(false);
+        };
   
   const showCreateShopBox = () => {
     setCreateShopBox(true);
@@ -206,6 +214,16 @@ const Home = ({ setAuth }) => {
       margin: '-10px 0px',
     };
 
+    const skinStyle = {
+        position: 'absolute',
+        fontSize: '30px',
+        fontWeight: 'bold',
+        color: '#000000',
+        top: '-10%',
+        transform: 'scale(0.6)',
+        left: '80%',
+      };
+
     const rowStyle = {
         display: 'flex',
         flexDirection: 'row',
@@ -283,9 +301,29 @@ const Home = ({ setAuth }) => {
             <div style={emptyBoxStyle}></div>
             <HomeButton onClick={showCreateShopBox} label='Shop' buttonBackground='#B969C6' />
 
+            {isStartGameBox && (
+              <div style={boxStyle}>
+                <p style={titleStyle}>Create New Table</p>
+                <SkinBox name = {'My Skin'} color = 'grey' style = {skinStyle} skinUrl = {'assets/waitroom/skin1.png'} buyNotAppear={true}/>
+
+                <label >
+                    <input name="myInput" style={{...boxIDStyle, ...titleStyle}}/>
+                </label>
+                <div style = {rowStyle}>
+                    <button  onClick={navigateToWaitingRoom} style = {joinButtonStyle} onMouseEnter={() => setJoinButtonHover(true)}
+      onMouseLeave={() => setJoinButtonHover(false)}>Join Room</button>
+                    <button  onClick={hideStartGameBox} style = {closeButtonStyle} onMouseEnter={() => setCloseButtonHover(true)}
+      onMouseLeave={() => setCloseButtonHover(false)}>Close Box</button>
+                </div>
+              </div>
+            )}
+
+
             {isCreateRoomBox && (
               <div style={boxStyle}>
                 <p style={titleStyle}>Choose Table</p>
+                <SkinBox name = {'My Skin'} color = 'grey' style = {skinStyle} skinUrl = {'assets/waitroom/skin1.png'} buyNotAppear={true}/>
+
                 <label >
                     <input name="myInput" style={{...boxIDStyle, ...titleStyle}}/>
                 </label>
